@@ -14,12 +14,16 @@ spring:
     check-location: false
     baselineOnMigrate: true
   datasource:
-    url: 'jdbc:h2:file:./target/database/h2'
+    #url: 'jdbc:h2:file:./target/database/h2'
     #url: jdbc:h2:mem:test_mem
-    username: sa
-    password: null
-    driverClassName: org.h2.Driver
+    #username: sa
+    #password: null
+    #driverClassName: org.h2.Driver
     max-active: 15
+    url: 'jdbc:postgresql://localhost:5432/hapi_fhir_jpa'
+    username: postgres
+    password: abc123
+    driverClassName: org.postgresql.Driver
 
     # database connection pool size
     hikari:
@@ -129,7 +133,7 @@ hapi:
       allow_Credentials: true
       # These are allowed_origin patterns, see: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/cors/CorsConfiguration.html#setAllowedOriginPatterns-java.util.List-
       allowed_origin:
-        - '*'
+        'http://localhost:4200/'
 
     # Search coordinator thread pool sizes
     search-coord-core-pool-size: 20
@@ -160,7 +164,7 @@ hapi:
     #    max_binary_size: 104857600
     #    max_page_size: 200
     #    retain_cached_searches_mins: 60
-    #    reuse_cached_search_results_millis: 60000
+    reuse_cached_search_results_millis: 60000
     tester:
       home:
         name: Local Tester
