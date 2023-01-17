@@ -15,6 +15,7 @@ import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
 import org.hl7.fhir.dstu3.model.*;
 import org.hl7.fhir.instance.model.api.IIdType;
+import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,8 +35,6 @@ import java.util.concurrent.TimeUnit;
 
 import static ca.uhn.fhir.util.TestUtil.waitForSize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = Application.class, properties =
@@ -113,11 +112,11 @@ public class ExampleServerDstu3IT implements IServerSupport {
       .execute();
 
     List<Parameters.ParametersParameterComponent> response = outParams.getParameter();
-	  assertFalse(response.isEmpty());
+	  Assert.assertFalse(response.isEmpty());
     Parameters.ParametersParameterComponent component = response.get(0);
-    assertTrue(component.getResource() instanceof MeasureReport);
+    Assert.assertTrue(component.getResource() instanceof MeasureReport);
     MeasureReport report = (MeasureReport) component.getResource();
-    assertEquals("Measure/"+measureId, report.getMeasure());
+    Assert.assertEquals("Measure/"+measureId, report.getMeasure());
   }
 
   private int loadDataFromDirectory(String theDirectoryName) throws IOException {
