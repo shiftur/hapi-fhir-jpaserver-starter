@@ -36,7 +36,7 @@ spring:
       #If using H2, then supply the value of ca.uhn.fhir.jpa.model.dialect.HapiFhirH2Dialect
       #If using postgres, then supply the value of ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgres94Dialect
 
-      hibernate.dialect: ca.uhn.fhir.jpa.model.dialect.HapiFhirH2Dialect
+      hibernate.dialect: ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgres94Dialect
   #      hibernate.hbm2ddl.auto: update
   #      hibernate.jdbc.batch_size: 20
   #      hibernate.cache.use_query_cache: false
@@ -133,7 +133,7 @@ hapi:
       allow_Credentials: true
       # These are allowed_origin patterns, see: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/cors/CorsConfiguration.html#setAllowedOriginPatterns-java.util.List-
       allowed_origin:
-        'http://localhost:4200/'
+        '*'
 
     # Search coordinator thread pool sizes
     search-coord-core-pool-size: 20
