@@ -37,7 +37,7 @@ import static ca.uhn.fhir.util.TestUtil.waitForSize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = Application.class, properties =
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {Application.class, JpaStarterWebsocketDispatcherConfig.class}, properties =
   {
      "spring.datasource.url=jdbc:h2:mem:dbr3",
      "hapi.fhir.cql_enabled=true",
