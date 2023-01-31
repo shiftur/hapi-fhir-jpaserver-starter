@@ -14,12 +14,16 @@ spring:
     check-location: false
     baselineOnMigrate: true
   datasource:
-    url: 'jdbc:h2:file:./target/database/h2'
+    #url: 'jdbc:h2:file:./target/database/h2'
     #url: jdbc:h2:mem:test_mem
-    username: sa
-    password: null
-    driverClassName: org.h2.Driver
+    #username: sa
+    #password: null
+    #driverClassName: org.h2.Driver
     max-active: 15
+    url: 'jdbc:postgresql://localhost:5432/hapi_fhir_jpa'
+    username: postgres
+    password: abc123
+    driverClassName: org.postgresql.Driver
 
     # database connection pool size
     hikari:
@@ -160,7 +164,7 @@ hapi:
     #    max_binary_size: 104857600
     #    max_page_size: 200
     #    retain_cached_searches_mins: 60
-    #    reuse_cached_search_results_millis: 60000
+    reuse_cached_search_results_millis: 10
     tester:
       home:
         name: Local Tester
@@ -209,3 +213,10 @@ hapi:
 #  protocol: 'http'
 #  schema_management_strategy: CREATE
 #  username: SomeUsername
+keycloak:
+  realm: angular
+  auth-server-url: 'http://localhost:8180'
+  ssl-required: external
+  resource: hapiFhirServer
+  credentials: 
+    secret: 'cdeb5cb7-c70d-4901-a719-b5e57b45624f'
