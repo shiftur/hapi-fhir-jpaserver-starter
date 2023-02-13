@@ -68,7 +68,7 @@ public class AppProperties {
   private Map<String, Tester> tester = null;
   private Logger logger = new Logger();
   private Subscription subscription = new Subscription();
-  private Cors cors = null;
+  private Cors cors = new Cors();
   private Partitioning partitioning = null;
   private Boolean install_transitive_ig_dependencies = true;
   private Map<String, ImplementationGuide> implementationGuides = null;
@@ -568,7 +568,7 @@ public class AppProperties {
 
 	public static class Cors {
     private Boolean allow_Credentials = true;
-    private List<String> allowed_origin = ImmutableList.of("*");
+    private List<String> allowed_origin = ImmutableList.of("http://localhost:9999/*","http://localhost:8180/*","http://localhost:49336/*","http://localhost:4200/*", "http://localhost:9999/","http://localhost:8180/","http://localhost:49336/","http://localhost:4200/", "http://localhost:9999","http://localhost:8180","http://localhost:49336","http://localhost:4200", "*");
 
     public List<String> getAllowed_origin() {
       return allowed_origin;

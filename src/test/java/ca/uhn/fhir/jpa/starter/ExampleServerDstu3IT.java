@@ -94,7 +94,7 @@ public class ExampleServerDstu3IT implements IServerSupport {
     ourLog.info("{} files imported successfully!", numFilesLoaded);
     //loadBundle("dstu3/EXM104/EXM104_FHIR3-8.1.000-bundle.json", ourCtx, ourClient);
 
-    // http://localhost:8080/fhir/Measure/measure-EXM104-FHIR3-8.1.000/$evaluate-measure?periodStart=2019-01-01&periodEnd=2019-12-31
+    // http://localhost:9999/fhir/Measure/measure-EXM104-FHIR3-8.1.000/$evaluate-measure?periodStart=2019-01-01&periodEnd=2019-12-31
     Parameters inParams = new Parameters();
 //    inParams.addParameter().setName("measure").setValue(new StringType("Measure/measure-EXM104-8.2.000"));
 //    inParams.addParameter().setName("patient").setValue(new StringType("Patient/numer-EXM104-FHIR3"));

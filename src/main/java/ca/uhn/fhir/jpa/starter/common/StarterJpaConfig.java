@@ -40,6 +40,7 @@ import ca.uhn.fhir.jpa.search.DatabaseBackedPagingProvider;
 import ca.uhn.fhir.jpa.search.IStaleSearchDeletingSvc;
 import ca.uhn.fhir.jpa.search.StaleSearchDeletingSvcImpl;
 import ca.uhn.fhir.jpa.starter.AppProperties;
+import ca.uhn.fhir.jpa.starter.AppProperties.Cors;
 import ca.uhn.fhir.jpa.starter.annotations.OnCorsPresent;
 import ca.uhn.fhir.jpa.starter.annotations.OnImplementationGuidesPresent;
 import ca.uhn.fhir.jpa.starter.common.validation.IRepositoryValidationInterceptorFactory;
@@ -64,6 +65,7 @@ import ca.uhn.fhir.rest.server.util.ISearchParamRegistry;
 import ca.uhn.fhir.validation.IValidatorModule;
 import ca.uhn.fhir.validation.ResultSeverityEnum;
 import mystuff.interceptors.PatientAndAdminAuthorizationInterceptor;
+import mystuff.interceptors.SsoLoginInterceptor;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableList;
@@ -214,6 +216,8 @@ public class StarterJpaConfig {
 	@Bean
 	@Conditional(OnCorsPresent.class)
 	public CorsInterceptor corsInterceptor(AppProperties appProperties) {
+
+		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2");
 		// Define your CORS configuration. This is an example
 		// showing a typical setup. You should customize this
 		// to your specific needs
@@ -229,6 +233,7 @@ public class StarterJpaConfig {
 		config.addAllowedHeader("Prefer");
 
 		List<String> allAllowedCORSOrigins = appProperties.getCors().getAllowed_origin();
+		System.out.println(allAllowedCORSOrigins.toString());
 		allAllowedCORSOrigins.forEach(config::addAllowedOriginPattern);
 		ourLog.info("CORS allows the following origins: " + String.join(", ", allAllowedCORSOrigins));
 
@@ -306,7 +311,7 @@ public class StarterJpaConfig {
 
 		fhirServer.registerInterceptor(loggingInterceptor);
 
-		//fhirServer.registerInterceptor(new PatientAndAdminAuthorizationInterceptor());
+		fhirServer.registerInterceptor(new SsoLoginInterceptor());
 
 		/*
 		 * If you are hosting this server at a specific DNS name, the server will try to
@@ -340,7 +345,7 @@ public class StarterJpaConfig {
 		if (true) { // <-- ENABLED RIGHT NOW
 			fhirServer.registerProvider(subscriptionTriggeringProvider.get());
 		}
-
+		
 		corsInterceptor.ifPresent(fhirServer::registerInterceptor);
 
 		if (daoConfig.getSupportedSubscriptionTypes().size() > 0) {

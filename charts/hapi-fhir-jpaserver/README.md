@@ -77,7 +77,7 @@ helm install --render-subchart-notes hapi-fhir-jpaserver hapifhir/hapi-fhir-jpas
 | securityContext.runAsNonRoot | bool | `true` |  |
 | securityContext.runAsUser | int | `65532` |  |
 | securityContext.seccompProfile.type | string | `"RuntimeDefault"` |  |
-| service.port | int | `8080` | port where the server will be exposed at |
+| service.port | int | `9999` | port where the server will be exposed at |
 | service.type | string | `"ClusterIP"` | service type |
 | startupProbe.failureThreshold | int | `10` |  |
 | startupProbe.initialDelaySeconds | int | `30` |  |

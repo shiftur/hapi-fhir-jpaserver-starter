@@ -1,4 +1,4 @@
-#Adds the option to go to eg. http://localhost:8080/actuator/health for seeing the running configuration
+#Adds the option to go to eg. http://localhost:9999/actuator/health for seeing the running configuration
 #see https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.endpoints
 management:
   endpoints:
@@ -58,7 +58,7 @@ hapi:
   fhir:
 
     ### This enables the swagger-ui at /fhir/swagger-ui/index.html as well as the /fhir/api-docs (see https://hapifhir.io/hapi-fhir/docs/server_plain/openapi.html)
-    openapi_enabled: true
+    openapi_enabled: false
     ### This is the FHIR version. Choose between, DSTU2, DSTU3, R4 or R5
     fhir_version: R4
     ### enable to use the ApacheProxyAddressStrategy which uses X-Forwarded-* headers
@@ -134,7 +134,7 @@ hapi:
       allow_Credentials: true
       # These are allowed_origin patterns, see: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/cors/CorsConfiguration.html#setAllowedOriginPatterns-java.util.List-
       allowed_origin:
-        '*'
+        ["http://localhost:9999/*","http://localhost:8180/*","http://localhost:49336/*","http://localhost:4200/*", "http://localhost:9999/","http://localhost:8180/","http://localhost:49336/","http://localhost:4200/", "http://localhost:9999","http://localhost:8180","http://localhost:49336","http://localhost:4200", "*"]
 
     # Search coordinator thread pool sizes
     search-coord-core-pool-size: 20
@@ -169,7 +169,7 @@ hapi:
     tester:
       home:
         name: Local Tester
-        server_address: 'http://localhost:8080/fhir'
+        server_address: 'http://localhost:9999/fhir'
         refuse_to_fetch_third_party_urls: false
         fhir_version: R4
       global:
@@ -215,9 +215,11 @@ hapi:
 #  schema_management_strategy: CREATE
 #  username: SomeUsername
 keycloak:
-  realm: angular
-  auth-server-url: 'http://localhost:8180'
+  realm: test
+  auth-server-url: 'http://localhost:8080/auth'
   ssl-required: external
   resource: hapiFhirServer
+  cors: true
+  enabled: true
   credentials: 
-    secret: 'cdeb5cb7-c70d-4901-a719-b5e57b45624f'
+    secret: 'CZkHzSiEArgtO6FeehsS9MIVcEkCvalf'
