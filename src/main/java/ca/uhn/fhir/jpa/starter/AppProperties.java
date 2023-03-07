@@ -568,7 +568,7 @@ public class AppProperties {
 
 	public static class Cors {
     private Boolean allow_Credentials = true;
-    private List<String> allowed_origin = ImmutableList.of("http://localhost:9999/*","http://localhost:8180/*","http://localhost:49336/*","http://localhost:4200/*", "http://localhost:9999/","http://localhost:8180/","http://localhost:49336/","http://localhost:4200/", "http://localhost:9999","http://localhost:8180","http://localhost:49336","http://localhost:4200", "*");
+    private List<String> allowed_origin = ImmutableList.of("http://localhost:9999/*","http://localhost:8180/*","http://localhost:49336/*","http://localhost:4200/*", "http://localhost:9999/","http://localhost:8180/","http://localhost:49336/","http://localhost:4200/", "http://localhost:9999","http://localhost:8180","http://localhost:49336","http://localhost:4200", "https://localhost:7294", "https://localhost:7294/", "https://localhost:7294/*", "*");
 
     public List<String> getAllowed_origin() {
       return allowed_origin;
